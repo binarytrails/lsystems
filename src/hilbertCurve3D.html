@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Hilbert Curve in Javascript">
+        <meta name="keywords" content="Hilbert Curve, Javascript">
+
+        <title>Hilbert Curve</title>
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <!-- libs -->
+        <script src="js/libs/three.min.js"></script>
+        <script src="js/libs/controls_trackball.js"></script>
+        <script src="js/lindenmayer/lindenmayer_ES5.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/modules/hilbertCurve3D.js"></script>
+
+        <link rel="stylesheet" href="css/hilbertCurve3D.css">
+    </head>
+    <body>
+        <script>
+            function cat()
+            {
+                alert("meow");
+
+                // var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+                // iframeCanvas = innerDoc.getElementById("mainCanvas");
+                // console.log(iframeCanvas);
+                // iframeCanvas.parentNode.removeChild(iframeCanvas);
+                // iframeCanvas.width = 100;
+                // console.log(iframeCanvas);
+            }
+
+            $(document).ready(function()
+            {
+                canvas = getHilbertCurve($(document).width(), $(document).height());
+                canvas.id = "mainCanvas";
+                document.body.appendChild(canvas);
+                animateHilbertCurve();
+                renderHilbertCurve();
+            });
+        </script>
+        <div id="options">
+            Background: <input type="text" value="0x611394">
+        </div>
+    </body>
+</html>

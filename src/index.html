@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="L-System in Javascript">
+        <meta name="keywords" content="Lindenmayer, L-System, Javascript">
+        <meta name="author" content="Seva Ivanov">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- custom -->
+        <script type="text/javascript" src="js/modules/hilbertCurve3D.js"></script>
+        <link rel="stylesheet" href="css/index.css">
+
+        <script type="text/javascript">
+            
+            var iframe;
+
+            function showHilbertCurve()
+            {
+                iframe.src = "hilbertCurve3D.html";
+                $(".info").hide();
+                $("#hilbertCurveInfo").show();
+            }
+
+            $(document).ready(function()
+            {
+                iframe = parent.document.getElementById('viewer');
+            });
+            
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="left">
+                <div id="container">
+                    <h1>Lindermayer</h1>
+                    <select>
+                        <option disabled="true" selected="selected">3D</option>
+                        <option onclick="showHilbertCurve()">Hilbert Curve</option>
+                    </select>
+                    <p id="hilbertCurveInfo" class="info">A Hilbert curve (also known as a Hilbert space-filling curve) is a continuous fractal space-filling curve first described by the German mathematician David Hilbert in 1891,[1] as a variant of the space-filling Peano curves discovered by Giuseppe Peano in 1890.</br></br>
+                    Because it is space-filling, its Hausdorff dimension is 2 (precisely, its image is the unit square, whose dimension is 2 in any definition of dimension; its graph is a compact set homeomorphic to the closed unit interval, with Hausdorff dimension 2).</p>
+                </div>
+            </div>
+            <div id="right">
+                <iframe id="viewer"></iframe>
+            </div>
+        </div>
+    </body>
+</html>
