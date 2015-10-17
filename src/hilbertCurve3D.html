@@ -18,29 +18,41 @@
     </head>
     <body>
         <script>
-            function cat()
-            {
-                alert("meow");
+            var width, height, color, canvas;
 
-                // var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
-                // iframeCanvas = innerDoc.getElementById("mainCanvas");
-                // console.log(iframeCanvas);
-                // iframeCanvas.parentNode.removeChild(iframeCanvas);
-                // iframeCanvas.width = 100;
-                // console.log(iframeCanvas);
+            function buildHilbertCurve(_color)
+            {
+                width = $(document).width();
+                height = $(document).height();
+                color = _color;
+
+                document.getElementById("color").value = color;
+
+                initHilbertCurve(width, height, color);
+
+                canvas = getHilbertCurve();
+                canvas.id = "canvas";
+
+                $("#" + canvas.id).remove();
+                document.body.appendChild(canvas);
+
+                animateHilbertCurve();
+                renderHilbertCurve();
+            }
+
+            function changeFigureColor()
+            {
+                color = document.getElementById("color").value;
+                buildHilbertCurve(color);
             }
 
             $(document).ready(function()
             {
-                canvas = getHilbertCurve($(document).width(), $(document).height());
-                canvas.id = "mainCanvas";
-                document.body.appendChild(canvas);
-                animateHilbertCurve();
-                renderHilbertCurve();
+                buildHilbertCurve(0x611394);
             });
         </script>
         <div id="options">
-            Background: <input type="text" value="0x611394">
+            Background: <input id="color" onchange="changeFigureColor()" type="text">
         </div>
     </body>
 </html>

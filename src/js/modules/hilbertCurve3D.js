@@ -5,6 +5,7 @@ var X = new THREE.Vector3(1, 0, 0)
 var Y = new THREE.Vector3(0, 1, 0)
 var Z = new THREE.Vector3(0, 0, 1)
 var lineLength = 1
+var width, height, color;
 
 var pushSegment = function()
 {
@@ -15,7 +16,14 @@ var pushSegment = function()
     newSegment.updateMatrix()
 }
 
-function getHilbertCurve(width, height)
+function initHilbertCurve(_width, _height, _color)
+{
+    width = _width;
+    height = _height;
+    color = _color;
+}
+
+function getHilbertCurve()
 {
     scene = new THREE.Scene()
     camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
@@ -42,13 +50,11 @@ function getHilbertCurve(width, height)
     controls.addEventListener('change', renderHilbertCurve);
 
     var light = new THREE.DirectionalLight(0xffffff);
-    light.position
-        .set(1, 1, 1);
+    light.position.set(1, 1, 1);
     scene.add(light);
 
     light = new THREE.DirectionalLight(0x002288);
-    light.position
-        .set(-1, -1, -1);
+    light.position.set(-1, -1, -1);
     scene.add(light);
 
     light = new THREE.AmbientLight(0x222222);
@@ -61,7 +67,7 @@ function getHilbertCurve(width, height)
 
     var geometry = new THREE.BoxGeometry(lineLength, lineLength/4, lineLength/4)
     var material = new THREE.MeshLambertMaterial({
-        color: 0x611394,
+        color: color,
         wireframe: false
     })
     currentModel = new THREE.Mesh(geometry, material)
@@ -128,7 +134,6 @@ function getHilbertCurve(width, height)
 
     return renderer.domElement;
 }
-
 
 function animateHilbertCurve()
 {
