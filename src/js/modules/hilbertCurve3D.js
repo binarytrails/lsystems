@@ -29,8 +29,9 @@ function getHilbertCurve()
 
     if(!camera)
     {
-        camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
-        camera.position.x = -10
+        camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+        camera.position.x = -10;
+        camera.position.y = 5;
     }
 
     controls = new THREE.TrackballControls(camera);
