@@ -48,12 +48,14 @@
         {
             width: 100%;
             height: 100%;
+            border: 0;
         }
 
     #left
     {
         width: 30%;
         float: left;
+        /*overflow-y: scroll;*/
         border-right: 2px solid white;
     }
 
@@ -69,4 +71,10 @@
                 margin-top: 2em;
                 line-height: 1.3em;
                 display: none;
+            }
+
+            #left p.info a.by
+            {
+                float: right;
+                margin-right: 6%;
             }
