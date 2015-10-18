@@ -25,14 +25,13 @@
         <script>
             var width, height, canvas;
 
-            function buildHilbertCurve(_color)
+            function buildHilbertCurve(hexColor)
             {
                 width = $(document).width();
                 height = $(document).height();
+                decColor = parseInt(hexColor, 16);
 
-                document.getElementById("color").value = _color;
-
-                initHilbertCurve(width, height, _color);
+                initHilbertCurve(width, height, decColor);
 
                 canvas = getHilbertCurve();
                 canvas.id = "canvas";
@@ -44,21 +43,22 @@
                 renderHilbertCurve();
             }
 
+            // builds new; @TODO update instead
             function changeFigureColor(hexColor)
             {
-                // builds new; @TODO update instead
-                decColor = parseInt(hexColor, 16);
                 buildHilbertCurve(decColor);
             }
 
             $(document).ready(function()
             {
-                color = 0x611394;
-                buildHilbertCurve(color);
+                hexColor = "4F2694";
+                document.getElementById("color").value = hexColor;
+                buildHilbertCurve(hexColor);
             });
         </script>
         <div id="options">
-            Background: <input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeFigureColor(this.value)" type="text" value="66ff00">
+            <p>Background: </p><input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeFigureColor(this.value)" type="text"
+            style="width:4em;">
         </div>
     </body>
 </html>

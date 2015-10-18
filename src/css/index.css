@@ -12,13 +12,11 @@
         a
         {
             color: white; 
-            text-decoration: none;
-            text-shadow: 0 0 15px white;
-            transition: text-shadow 0.3s;
+            text-decoration: underline;
         }
             a:hover
             {
-                text-shadow: none;
+                text-shadow: 0 0 8px white;
             }
             a:focus
             {
@@ -66,8 +64,9 @@
 
             #left select{}
 
-            #left p
+            #left p.info
             {
                 margin-top: 2em;
+                line-height: 1.3em;
                 display: none;
             }
