@@ -8,27 +8,31 @@
         <title>Hilbert Curve</title>
 
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <!-- libs -->
+
+        <!-- l-system -->
         <script src="js/libs/three.min.js"></script>
         <script src="js/libs/controls_trackball.js"></script>
         <script src="js/lindenmayer/lindenmayer_ES5.js" charset="utf-8"></script>
 
+        <!-- controls -->
+        <script type="text/javascript" src="js/jscolor/jscolor.js"></script>
+
+        <!-- specific -->
         <script type="text/javascript" src="js/modules/hilbertCurve3D.js"></script>
         <link rel="stylesheet" href="css/iframe.css">
     </head>
     <body>
         <script>
-            var width, height, color, canvas;
+            var width, height, canvas;
 
             function buildHilbertCurve(_color)
             {
                 width = $(document).width();
                 height = $(document).height();
-                color = _color;
 
-                document.getElementById("color").value = color;
+                document.getElementById("color").value = _color;
 
-                initHilbertCurve(width, height, color);
+                initHilbertCurve(width, height, _color);
 
                 canvas = getHilbertCurve();
                 canvas.id = "canvas";
@@ -40,19 +44,21 @@
                 renderHilbertCurve();
             }
 
-            function changeFigureColor()
+            function changeFigureColor(hexColor)
             {
-                color = document.getElementById("color").value;
-                buildHilbertCurve(color);
+                // builds new; @TODO update instead
+                decColor = parseInt(hexColor, 16);
+                buildHilbertCurve(decColor);
             }
 
             $(document).ready(function()
             {
-                buildHilbertCurve(0x611394);
+                color = 0x611394;
+                buildHilbertCurve(color);
             });
         </script>
         <div id="options">
-            Background: <input id="color" onchange="changeFigureColor()" type="text">
+            Background: <input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeFigureColor(this.value)" type="text" value="66ff00">
         </div>
     </body>
 </html>
