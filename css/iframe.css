@@ -1,0 +1,38 @@
+    
+    body
+    {
+        color: white;
+        margin: 0;
+    }
+    
+    canvas
+    {
+        position: absolute;
+        width: 100%;
+        height: 90%;
+    }
+
+    #options
+    {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        bottom: 0;
+        z-index: 2;
+        opacity: 0.5;
+        /*background: rgba(255, 255, 255, 0.5);*/
+        /*box-shadow: 0 0 10px white;*/
+    }
+
+        #options p
+        {
+            display: inline-block;
+            margin: 1em;
+        }
+
+        #options input
+        {
+            display: inline-block;
+            width: auto;
+            border: 2px white;
+        }

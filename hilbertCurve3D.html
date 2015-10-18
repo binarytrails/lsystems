@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Hilbert Curve in Javascript">
+        <meta name="keywords" content="Hilbert Curve, Javascript">
+
+        <title>Hilbert Curve</title>
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- l-system -->
+        <script src="js/libs/three.min.js"></script>
+        <script src="js/libs/controls_trackball.js"></script>
+        <script src="js/lindenmayer/lindenmayer_ES5.js" charset="utf-8"></script>
+
+        <!-- controls -->
+        <script type="text/javascript" src="js/jscolor/jscolor.js"></script>
+
+        <!-- specific -->
+        <script type="text/javascript" src="js/modules/hilbertCurve3D.js"></script>
+        <link rel="stylesheet" href="css/iframe.css">
+    </head>
+    <body>
+        <script>
+            var width, height, canvas,
+                hexColor, word;
+
+            function buildHilbertCurve()
+            {
+                width = $(document).width();
+                height = $(document).height();
+                decColor = parseInt(hexColor, 16);
+
+                initHilbertCurve(width, height, decColor, word);
+
+                canvas = getHilbertCurve();
+                canvas.id = "canvas";
+
+                $("#" + canvas.id).remove();
+                document.body.appendChild(canvas);
+
+                animateHilbertCurve();
+                renderHilbertCurve();
+            }
+
+            // altering functions{
+
+            function changeWord(_word)
+            {
+                word = _word;
+                buildHilbertCurve();
+            }
+
+            function changeColor(_hexColor)
+            {
+                hexColor = _hexColor;
+                buildHilbertCurve();
+            }
+
+            // }altering; note: they build new; @TODO update instead.
+
+            $(document).ready(function()
+            {
+                hexColor = "4F2694";
+                word = "Z";
+                buildHilbertCurve();
+                document.getElementById("color").value = hexColor;
+            });
+        </script>
+        <div id="options">
+            <p>Background: </p><input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeColor(this.value)" type="text"
+            style="width:4em;">
+            <p>Word: </p><select id="word" onchange="changeWord(this.value)" type="text"
+            style="width:2.4em;">
+                <option>A</option>
+                <option>C</option>
+                <option>X</option>
+                <option selected="seclected">Z</option>
+            </select>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+
+    body
+    {
+        font-family: 'Courier New', sans-serif;
+        
+        font-size: 1em;
+        font-weight: lighter;
+        
+        color: white;
+    }
+
+        a
+        {
+            color: white; 
+            text-decoration: underline;
+        }
+            a:hover
+            {
+                text-shadow: 0 0 8px white;
+            }
+            a:focus
+            {
+                outline: 0;
+            }
+
+    #main
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        background: #1E1E1E;
+    }
+
+    #left, #right
+    {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #right{}
+
+        #right iframe#viewer
+        {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+    #left
+    {
+        width: 30%;
+        float: left;
+        /*overflow-y: scroll;*/
+        border-right: 2px solid white;
+    }
+
+        #left #container
+        {
+            margin: 2% 6%;
+        }
+
+            #left a.fullscreen
+            {
+                display: none;
+            }
+
+            #left p.info
+            {
+                margin-top: 2em;
+                line-height: 1.3em;
+                display: none;
+            }
+
+            #left p.info a.by
+            {
+                float: right;
+                margin-right: 6%;
+            }

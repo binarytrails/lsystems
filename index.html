@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="L-System in Javascript">
+        <meta name="keywords" content="Lindenmayer, L-System, Javascript">
+        <meta name="author" content="Seva Ivanov">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- custom -->
+        <script type="text/javascript" src="js/modules/hilbertCurve3D.js"></script>
+        <link rel="stylesheet" href="css/index.css">
+
+        <script type="text/javascript">
+            
+            var iframe;
+
+            function showHilbertCurve()
+            {
+                iframe.src = "hilbertCurve3D.html";
+                $(".info").hide();
+                $(".hilbertCurve").show();
+            }
+
+            $(document).ready(function()
+            {
+                iframe = parent.document.getElementById("viewer");
+            });
+            
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="left">
+                <div id="container">
+                    <h2><a href="https://en.wikipedia.org/wiki/L-system">
+                        Lindermayer Systems
+                    </a></h2>
+                    <p> $ Explore their complexity by altering them.</br></br>
+                        <i> 1. Use the mouse to rotate & zoom the camera.</br></br>
+                            2. Use ctrl+click to select the figure's proprieties.</i></br></br>
+                        > Available Systems:
+                    </p>
+                    <select>
+                        <option disabled="true" selected="selected">3D</option>
+                        <option onclick="showHilbertCurve()">Hilbert Curve</option>
+                    </select>
+                    <a href="hilbertCurve3D.html" class="fullscreen hilbertCurve info">Full Screen</a>
+                    <p class="hilbertCurve info">
+                        <i>A Hilbert curve is a continuous fractal space-filling curve first described by the German mathematician David Hilbert in 1891, as a variant of the space-filling Peano curves discovered by Giuseppe Peano in 1890. -<a href="https://en.wikipedia.org/wiki/Hilbert_curve">Wikipeadia</a></i>
+                        </br></br>
+                        See (word, productions, finals) in the <a href="https://github.com/sevaivanov/lindenmayer/blob/master/src/js/modules/hilbertCurve3D.js">source code</a> to understand the building pattern.
+                    </p>
+                </div>
+            </div>
+            <div id="right">
+                <iframe id="viewer"></iframe>
+            </div>
+        </div>
+    </body>
+</html>
