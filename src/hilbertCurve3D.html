@@ -23,15 +23,16 @@
     </head>
     <body>
         <script>
-            var width, height, canvas;
+            var width, height, canvas,
+                hexColor, word;
 
-            function buildHilbertCurve(hexColor)
+            function buildHilbertCurve()
             {
                 width = $(document).width();
                 height = $(document).height();
                 decColor = parseInt(hexColor, 16);
 
-                initHilbertCurve(width, height, decColor);
+                initHilbertCurve(width, height, decColor, word);
 
                 canvas = getHilbertCurve();
                 canvas.id = "canvas";
@@ -43,22 +44,40 @@
                 renderHilbertCurve();
             }
 
-            // builds new; @TODO update instead
-            function changeFigureColor(hexColor)
+            // altering functions{
+
+            function changeWord(_word)
             {
-                buildHilbertCurve(decColor);
+                word = _word;
+                buildHilbertCurve();
             }
+
+            function changeColor(_hexColor)
+            {
+                hexColor = _hexColor;
+                buildHilbertCurve();
+            }
+
+            // }altering; note: they build new; @TODO update instead.
 
             $(document).ready(function()
             {
                 hexColor = "4F2694";
+                word = "Z";
+                buildHilbertCurve();
                 document.getElementById("color").value = hexColor;
-                buildHilbertCurve(hexColor);
             });
         </script>
         <div id="options">
-            <p>Background: </p><input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeFigureColor(this.value)" type="text"
+            <p>Background: </p><input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeColor(this.value)" type="text"
             style="width:4em;">
+            <p>Word: </p><select id="word" onchange="changeWord(this.value)" type="text"
+            style="width:2.4em;">
+                <option>A</option>
+                <option>C</option>
+                <option>X</option>
+                <option selected="seclected">Z</option>
+            </select>
         </div>
     </body>
 </html>

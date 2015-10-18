@@ -5,7 +5,9 @@ var X = new THREE.Vector3(1, 0, 0)
 var Y = new THREE.Vector3(0, 1, 0)
 var Z = new THREE.Vector3(0, 0, 1)
 var lineLength = 1
+
 var width, height, color;
+var word;
 
 var pushSegment = function()
 {
@@ -16,11 +18,13 @@ var pushSegment = function()
     newSegment.updateMatrix()
 }
 
-function initHilbertCurve(_width, _height, _color)
+function initHilbertCurve(_width, _height, _decColor, _word)
 {
     width = _width;
     height = _height;
-    color = _color;
+    color = _decColor;
+
+    word = _word;
 }
 
 function getHilbertCurve()
@@ -77,7 +81,7 @@ function getHilbertCurve()
     currentModel.geometry.translate( -(lineLength/2), 0, 0 )
 
     hilbertCurve = new LSystem({
-        word: 'Z',
+        word: word,
         productions: [
             [
                 'Z', 'YYYY|Z'
