@@ -64,7 +64,10 @@
             margin: 2% 6%;
         }
 
-            #left select{}
+            #left a.fullscreen
+            {
+                display: none;
+            }
 
             #left p.info
             {
