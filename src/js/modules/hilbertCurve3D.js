@@ -26,10 +26,12 @@ function initHilbertCurve(_width, _height, _color)
 function getHilbertCurve()
 {
     scene = new THREE.Scene()
-    camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
 
-    camera.position.x = -10
-
+    if(!camera)
+    {
+        camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
+        camera.position.x = -10
+    }
 
     controls = new THREE.TrackballControls(camera);
 
@@ -129,8 +131,8 @@ function getHilbertCurve()
         ]
     })
 
-    hilbertCurve.iterate(4)
-    hilbertCurve.final()
+    hilbertCurve.iterate(4);
+    hilbertCurve.final();
 
     return renderer.domElement;
 }
