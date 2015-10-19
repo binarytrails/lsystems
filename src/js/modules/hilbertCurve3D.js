@@ -1,35 +1,35 @@
 
-var camera, controls, scene, renderer, currentModel;
-var hilbertCurve;
-var X = new THREE.Vector3(1, 0, 0)
-var Y = new THREE.Vector3(0, 1, 0)
-var Z = new THREE.Vector3(0, 0, 1)
-var lineLength = 1
+var camera, controls, scene, renderer, model,
+    hilbertCurve;
+    X = new THREE.Vector3(1, 0, 0),
+    Y = new THREE.Vector3(0, 1, 0),
+    Z = new THREE.Vector3(0, 0, 1),
+    lineLength = 1;
 
-var width, height, color;
-var word;
-
-var pushSegment = function()
-{
-    var newSegment = currentModel.clone()
-    scene.add(newSegment)
-    currentModel.translateX(-(lineLength))
-    newSegment.matrixAutoUpdate = false
-    newSegment.updateMatrix()
-}
+var width, height, color,
+    word;
 
 function initHilbertCurve(_width, _height, _decColor, _word)
 {
     width = _width;
     height = _height;
     color = _decColor;
-
     word = _word;
+}
+
+var pushSegment = function()
+{
+    var newSegment = model.clone();
+    scene.add(newSegment);
+    model.translateX(-lineLength);
+    newSegment.matrixAutoUpdate = false;
+    newSegment.updateMatrix();
+    //setTimeout(10000);
 }
 
 function getHilbertCurve()
 {
-    scene = new THREE.Scene()
+    scene = new THREE.Scene();
 
     if(!camera)
     {
@@ -73,64 +73,50 @@ function getHilbertCurve()
     var angle = 90
 
     var geometry = new THREE.BoxGeometry(lineLength, lineLength/4, lineLength/4)
-    var material = new THREE.MeshLambertMaterial({
+    var material = new THREE.MeshLambertMaterial(
+    {
         color: color,
         wireframe: false
     })
-    currentModel = new THREE.Mesh(geometry, material)
-    currentModel.geometry.translate( -(lineLength/2), 0, 0 )
+    model = new THREE.Mesh(geometry, material)
+    model.geometry.translate( -(lineLength/2), 0, 0 )
 
-    hilbertCurve = new LSystem({
-        word: word,
-        productions: [
+    hilbertCurve = new LSystem(
+    {
+        word,
+        productions:
+        [
             [
-                'Z', 'YYYY|Z'
+                'Z', 'YYYY'
             ],
             [
                 'Y', 'XXXX+XXXX+XXXX+XXXX'
-            ], [
-                'X', 'F+F+F^F^F-F-F^F^F'
             ],
             [
-                'A', 'B-F+CFC+F-D&F^D-F+&&CFC+F+B//'
-            ], [
-                'B', 'A&F^CFB^F^D^^-F-D^|F^B|FC^F^A//'
-            ], [
-                'C', '|D^|F^B-F+C^F^A&&FA&F^C+F+B^F^D//'
-            ], [
-                'D', '|CFB-F+B|FA&F^A&&FB-F+B|FC//'
+                'X', 'F+F+F^F^F-F-F^F^F' //add: F for awesomeness
             ]
         ],
-        finals: [
+        finals:
+        [
             [
                 'F', pushSegment
-            ], [
-                '+', function() {
-                    currentModel.rotation.y += ((Math.PI / 180) * angle)
+            ],
+            [
+                '+', function()
+                {
+                    model.rotation.y += ((Math.PI / 180) * angle)
                 }
-            ], [
-                '-', function() {
-                    currentModel.rotation.y += ((Math.PI / 180) * -angle)
+            ],
+            [
+                '-', function()
+                {
+                    model.rotation.y += ((Math.PI / 180) * -angle)
                 }
-            ], [
-                '&', function() {
-                    currentModel.rotation.z += ((Math.PI / 180) * angle)
-                }
-            ], [
-                '^', function() {
-                    currentModel.rotation.z += ((Math.PI / 180) * -angle)
-                }
-            ], [
-                '\\', function() {
-                    currentModel.rotation.x += ((Math.PI / 180) * angle)
-                }
-            ], [
-                '/', function() {
-                    currentModel.rotation.x += ((Math.PI / 180) * -angle)
-                }
-            ], [
-                '|', function() {
-                    currentModel.rotation.y += ((Math.PI / 180) * 180)
+            ],
+            [
+                '^', function()
+                {
+                    model.rotation.z += ((Math.PI / 180) * -angle)
                 }
             ]
         ]
