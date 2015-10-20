@@ -24,7 +24,7 @@
     <body>
         <script>
             var width, height, canvas,
-                hexColor, word;
+                hexColor, word, productions;
 
             function buildHilbertCurve()
             {
@@ -32,7 +32,8 @@
                 height = $(document).height();
                 decColor = parseInt(hexColor, 16);
 
-                initHilbertCurve(width, height, decColor, word);
+                initHilbertCurve(width, height, 
+                    decColor, word, productions);
 
                 canvas = getHilbertCurve();
                 canvas.id = "canvas";
@@ -52,6 +53,14 @@
                 buildHilbertCurve();
             }
 
+            function changeProduction(key, value)
+            {
+                console.log(productions[key]);
+                productions[key] += value;
+                console.log(productions[key]);
+                buildHilbertCurve();
+            }
+
             function changeColor(_hexColor)
             {
                 hexColor = _hexColor;
@@ -62,22 +71,32 @@
 
             $(document).ready(function()
             {
-                hexColor = "4F2694";
                 word = "Z";
+                productions = {
+                    "Z": "YYYY",
+                    "Y": "XXXX+XXXX+XXXX+XXXX",
+                    "X": "F+F+F^F^F-F-F^F^F"
+                };
+                hexColor = "4F2694";
+
                 buildHilbertCurve();
+
+                $("#word").val(word);
+                $("#productionZ").val(productions.Z);
+                $("#productionY").val(productions.Y);
+                $("#productionX").val(productions.X);
                 document.getElementById("color").value = hexColor;
             });
         </script>
+        <div id="pattern">
+            <input id="word" onchange="changeWord(this.value)" type="text">
+            <input id="productionZ" onchange="changeProduction('Z', this.value)" type="text" class="production">
+            <input id="productionY" onchange="changeProduction('Y', this.value)" type="text" class="production">
+            <input id="productionX" onchange="changeProduction('X', this.value)" type="text" class="production">
+        </div>
         <div id="options">
             <p>Background: </p><input id="color" class="color {slider:false, pickerClosable:true}" onchange="changeColor(this.value)" type="text"
             style="width:4em;">
-            <p>Word: </p><select id="word" onchange="changeWord(this.value)" type="text"
-            style="width:2.4em;">
-                <option>A</option>
-                <option>C</option>
-                <option>X</option>
-                <option selected="seclected">Z</option>
-            </select>
         </div>
     </body>
 </html>
