@@ -12,16 +12,38 @@
         height: 90%;
     }
 
-    #options
+    input
+    {
+        color: white;
+        background: black;
+        border: thin solid white;
+    }
+
+    #options, #pattern
     {
         position: absolute;
-        width: 100%;
-        height: 10%;
-        bottom: 0;
         z-index: 2;
-        opacity: 0.5;
-        /*background: rgba(255, 255, 255, 0.5);*/
-        /*box-shadow: 0 0 10px white;*/
+    }
+
+    #pattern
+    {
+        width: 30%;
+        height: auto;
+        top: 0;
+        right: 0.1%;
+    }
+
+        #pattern input
+        {
+            width: 98%;
+            height: 10%;
+            margin: auto;
+            text-align: center;
+        }
+
+    #options
+    {
+        bottom: 0;
     }
 
         #options p
@@ -34,5 +56,6 @@
         {
             display: inline-block;
             width: auto;
-            border: 2px white;
+            margin-right: 1em;
+            border: none;
         }

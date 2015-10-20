@@ -7,14 +7,15 @@ var camera, controls, scene, renderer, model,
     lineLength = 1;
 
 var width, height, color,
-    word;
+    word, productions;
 
-function initHilbertCurve(_width, _height, _decColor, _word)
+function initHilbertCurve(_width, _height, _decColor, _word, _productions)
 {
     width = _width;
     height = _height;
     color = _decColor;
     word = _word;
+    productions = _productions;
 }
 
 var pushSegment = function()
@@ -54,7 +55,7 @@ function getHilbertCurve()
         65, 83, 68
     ];
 
-    controls.addEventListener('change', renderHilbertCurve);
+    controls.addEventListener("change", renderHilbertCurve);
 
     var light = new THREE.DirectionalLight(0xffffff);
     light.position.set(1, 1, 1);
@@ -87,34 +88,34 @@ function getHilbertCurve()
         productions:
         [
             [
-                'Z', 'YYYY'
+                "Z", productions.Z
             ],
             [
-                'Y', 'XXXX+XXXX+XXXX+XXXX'
+                "Y", productions.Y
             ],
             [
-                'X', 'F+F+F^F^F-F-F^F^F' //add: F for awesomeness
+                "X", productions.X
             ]
         ],
         finals:
         [
             [
-                'F', pushSegment
+                "F", pushSegment
             ],
             [
-                '+', function()
+                "+", function()
                 {
                     model.rotation.y += ((Math.PI / 180) * angle)
                 }
             ],
             [
-                '-', function()
+                "-", function()
                 {
                     model.rotation.y += ((Math.PI / 180) * -angle)
                 }
             ],
             [
-                '^', function()
+                "^", function()
                 {
                     model.rotation.z += ((Math.PI / 180) * -angle)
                 }
