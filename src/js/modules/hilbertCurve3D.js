@@ -51,9 +51,7 @@ function getHilbertCurve()
     controls.staticMoving = true;
     controls.dynamicDampingFactor = 0.3;
 
-    controls.keys = [
-        65, 83, 68
-    ];
+    controls.keys = [65, 83, 68];
 
     controls.addEventListener("change", renderHilbertCurve);
 
@@ -68,19 +66,19 @@ function getHilbertCurve()
     light = new THREE.AmbientLight(0x222222);
     scene.add(light);
 
-    renderer = new THREE.WebGLRenderer()
-    renderer.setSize(width, height)
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);
 
-    var angle = 90
+    var angle = 90;
 
-    var geometry = new THREE.BoxGeometry(lineLength, lineLength/4, lineLength/4)
+    var geometry = new THREE.BoxGeometry(lineLength, lineLength/4, lineLength/4);
     var material = new THREE.MeshLambertMaterial(
     {
         color: color,
         wireframe: false
     })
-    model = new THREE.Mesh(geometry, material)
-    model.geometry.translate( -(lineLength/2), 0, 0 )
+    model = new THREE.Mesh(geometry, material);
+    model.geometry.translate( - (lineLength/2), 0, 0 );
 
     hilbertCurve = new LSystem(
     {
@@ -111,13 +109,13 @@ function getHilbertCurve()
             [
                 "-", function()
                 {
-                    model.rotation.y += ((Math.PI / 180) * -angle)
+                    model.rotation.y += ((Math.PI / 180) * - angle)
                 }
             ],
             [
                 "^", function()
                 {
-                    model.rotation.z += ((Math.PI / 180) * -angle)
+                    model.rotation.z += ((Math.PI / 180) * - angle)
                 }
             ]
         ]
