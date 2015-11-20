@@ -24,10 +24,19 @@
                 $(".info").hide();
                 $(".hilbertCurve").show();
             }
-
+            
             $(document).ready(function()
             {
                 iframe = parent.document.getElementById("viewer");
+                
+                $("#changeSelect").change(function() {
+                    switch($(this).val()) {
+                        case 'hilbert': 
+                            showHilbertCurve(); 
+                            break;
+                        // add more functions here
+                    }
+                });
             });
             
         </script>
@@ -45,9 +54,9 @@
                             2. Use ctrl + click to select the figure's proprieties.</i></br></br>
                         > Available Systems:
                     </p>
-                    <select>
-                        <option disabled="true" selected="selected">3D</option>
-                        <option onclick="showHilbertCurve()">Hilbert Curve</option>
+                    <select id="changeSelect">
+                        <option selected="selected">3D</option>
+                        <option value="hilbert">Hilbert Curve</option>
                     </select>
                     <a href="hilbertCurve3D.html" class="fullscreen hilbertCurve info">Full Screen</a>
                     <p class="hilbertCurve info">
